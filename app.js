@@ -1,14 +1,12 @@
-import { PrismaClient } from "./generated/prisma/client.ts";
-
+import prisma from "./config/prisma.js";
 import express from "express";
 import indexRouter from "./routes/indexRouter.js";
 import path from "node:path";
-import Pool from "./prisma_queries/pool.js";
 import session from "express-session";
 import passport from "passport";
-import createSessionStore from "connect-pg-simple";
 import dotenv from "dotenv";
 import "./config/passport.js";
+import { PrismaSessionStore } from "prisma-session-store";
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
@@ -23,11 +21,14 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const PgSessionStore = createSessionStore(session);
-const sessionStore = new PgSessionStore({
-  pool: Pool,
-  tableName: "session",
-});
+const sessionStore = new PrismaSessionStore(
+  prisma, // Use your new prisma client
+  {
+    checkPeriod: 2 * 60 * 1000, //ms
+    dbRecordIdIsSessionId: true,
+    dbRecordIdFunction: undefined,
+  }
+);
 
 app.use(
   session({

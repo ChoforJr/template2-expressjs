@@ -8,8 +8,7 @@ import {
 
 async function verifyCallback(username, password, done) {
   try {
-    const rows = await getUserInfoByUsername(username.toLowerCase());
-    const user = rows[0];
+    const user = await getUserInfoByUsername(username.toLowerCase());
 
     if (!user) {
       return done(null, false, { message: "Incorrect username" });
@@ -33,8 +32,8 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const rows = await getUserInfoByID(id);
-    const user = rows[0];
+    const userId = Number(id);
+    const user = await getUserInfoByID(userId);
 
     done(null, user);
   } catch (err) {
