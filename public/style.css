@@ -1,0 +1,47 @@
+html {
+  font-family: sans-serif;
+}
+body {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+  margin: auto;
+  font-size: 10px;
+  background-color: #3882f6;
+}
+p {
+  font-size: 2.5rem;
+}
+h1,
+h2 {
+  font-size: 2.5rem;
+}
+
+main section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1.5rem;
+}
+main section article {
+  border: #1f2937 0.2rem solid;
+  border-radius: 1rem;
+  min-height: 8rem;
+  line-height: 1.5;
+  font-size: 1.8rem;
+}
+.delMsg,
+.default {
+  color: yellow;
+  background-color: red;
+  font-size: 1.5rem;
+}
+
+nav {
+  font-size: 1.5rem;
+  color: greenyellow;
+}
+a {
+  text-decoration: none;
+  color: greenyellow;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head')%>
+  <body>
+    <a href="/">HomePage</a>
+    <form action="/sign-up" method="POST">
+      <label for="fullname">Full Name: </label>
+      <input
+        id="fullname"
+        name="fullname"
+        placeholder="Kakarot Bardock"
+        type="text"
+        value="<%= fullname %>"
+      />
+      <label for="username">Email: </label>
+      <input
+        id="username"
+        name="username"
+        placeholder="kakarot@gmail.com"
+        type="email"
+        value="<%= username %>"
+      />
+      <label for="password">Password: </label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        value="<%= password %>"
+      />
+      <label for="confirmPassword">Confirm Password: </label>
+      <input
+        id="confirmPassword"
+        name="confirmPassword"
+        type="password"
+        value="<%= confirmPassword %>"
+      />
+      <label for="isAdmin">Admin</label>
+      <input type="checkbox" name="isAdmin" id="isAdmin" value="true" <%=
+      isAdmin ? 'checked' : '' %>/>
+      <button type="submit">Sign Up</button>
+    </form>
+    <% if (locals.errors) {%> <%- include('partials/errors',{errors}) %> <% } %>
+  </body>
+</html>

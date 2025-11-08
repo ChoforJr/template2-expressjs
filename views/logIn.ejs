@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head')%>
+  <body>
+    <a href="/">HomePage</a>
+    <h2>Log-In</h2>
+    <form action="/log-in" method="POST">
+      <label for="username">Email: </label>
+      <input
+        id="username"
+        name="username"
+        placeholder="kakarot@gmail.com"
+        type="email"
+        value="<%= username %>"
+      />
+      <label for="password">Password: </label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        value="<%= password %>"
+      />
+      <button type="submit">Log In</button>
+    </form>
+    <% if (locals.errors) {%> <%- include('partials/errors',{errors}) %> <% } %>
+  </body>
+</html>

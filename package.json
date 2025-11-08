@@ -1,0 +1,47 @@
+{
+  "name": "template2-expressjs",
+  "version": "1.0.0",
+  "description": "Express JS template using Prisma ORM to query postgresql database instead of using libraries like 'pg'",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "prismaGen": "npx prisma generate",
+    "prismaMg": "npx prisma migrate dev --name init",
+    "startRawSql": "npx prisma generate --sql",
+    "watchRawSql": "npx prisma generate --sql --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChoforJr/template2-expressjs.git"
+  },
+  "keywords": [],
+  "author": "FORSAKANG CHOFOR JUNIOR",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/ChoforJr/template2-expressjs/issues"
+  },
+  "homepage": "https://github.com/ChoforJr/template2-expressjs#readme",
+  "devDependencies": {
+    "prisma": "^6.19.0",
+    "@types/node": "^24.10.0",
+    "dotenv": "^17.2.3",
+    "tsx": "^4.20.6",   
+    "bcryptjs": "^3.0.2",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.2.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.18.0",
+    "ejs-lint": "^2.0.1",
+    "@types/express": "^5.0.3",
+    "@types/express-session": "^1.18.2",
+    "@types/passport": "^1.0.17",
+    "@types/passport-local": "^1.0.38"
+  }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head',{script,style})%>
+  <body>
+    <aside>
+      <p>Code: 2025</p>
+      <nav>
+        <% if ( currentUser ) {%>
+        <h1>WELCOME BACK <%= currentUser.fullname %></h1>
+        <% if (currentUser.is_admin == true) { %>
+        <form action="/default" method="post">
+          <button type="submit" class="default">Reset to Default</button>
+        </form>
+        <% } %>
+        <ul>
+          <li><a href="/log-out">Log-Out</a></li>
+          <li><a href="/create-new-message">Create New Message</a></li>
+          <% if (currentUser.is_member == false) { %>
+          <li><a href="/join">Become a Member</a></li>
+          <% } %>
+        </ul>
+        <% } else { %>
+        <h1>Create an account or Log-in to add a message</h1>
+        <ul>
+          <li><a href="/sign-up">Sign-Up</a></li>
+          <li><a href="/log-in">Log-In</a></li>
+        </ul>
+        <%}%>
+      </nav>
+    </aside>
+    <main>
+      <h1>Messages</h1>
+      <section>
+        <% if ( messages && messages.length > 0 ) {%> <%
+        messages.forEach((message,index) => { %> <% if ( currentUser ) {%>
+        <article>
+          <div class="messages author">
+            Author: <%= currentUser.is_member == true ? message.author :
+            'anonymousUser'+index %>
+          </div>
+          <div class="messages title">Title: <%= message.title %></div>
+          <div class="messages timeStamp">
+            TimeStamp: <%= currentUser.is_member == true ? message.created_at :
+            'unknown' %>
+          </div>
+          <div class="messages message">Message: <%= message.text %></div>
+          <% if (currentUser.is_admin == true) { %>
+          <form action="/delMsg/<%= message.id %>" method="post">
+            <button type="submit" class="delMsg">Delete</button>
+          </form>
+          <% } %>
+        </article>
+        <% } else { %>
+        <article>
+          <div class="messages author">Author: anonymousUser<%= index %></div>
+          <div class="messages title">Title: <%= message.title %></div>
+          <div class="messages timeStamp">TimeStamp: unknown</div>
+          <div class="messages message">Message: <%= message.text %></div>
+        </article>
+        <%}%> <% }) %> <% } else { %>
+        <h2>No message available, You should create one</h2>
+        <%}%>
+      </section>
+    </main>
+  </body>
+</html>
