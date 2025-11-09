@@ -6,7 +6,7 @@ import session from "express-session";
 import passport from "passport";
 import dotenv from "dotenv";
 import "./config/passport.js";
-import { PrismaSessionStore } from "prisma-session-store";
+import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
