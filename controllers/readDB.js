@@ -1,5 +1,3 @@
-import { getMessages } from "../prisma_queries/find.js";
-
 export async function homePageGet(req, res) {
   const messages = await getMessages();
   res.render("index", {

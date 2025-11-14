@@ -1,5 +1,5 @@
 // This file creates and exports a single, reusable Prisma Client instance
-import { PrismaClient } from "../generated/prisma/client.ts";
+import { PrismaClient } from "@prisma/client";
 import "dotenv/config";
 
 const prisma = new PrismaClient();
